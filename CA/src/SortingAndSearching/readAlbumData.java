@@ -7,7 +7,7 @@ import java.util.*;
 
 public class readAlbumData {
 
-	public static void main(String[] args) throws Exception{
+	public static Album[] readAlbums() throws Exception{
 		//parsing and reading the CSV file data into the music (object) array
 		// provide the path here...
         File directory = new File("./");
@@ -32,7 +32,14 @@ public class readAlbumData {
 
 		}
 		sc.close();  //closes the scanner
+                
+                return albums;
+        }
+        
+        public static void main(String[] args) throws Exception {
 
+                Album[] albums = readAlbums();
+            
 		// We can print album details due to overridden toString method in album class
 		System.out.println(albums[0]);
 		System.out.println(albums[1]);
@@ -40,10 +47,12 @@ public class readAlbumData {
 		// we can compare albums based on their ID due to overridden CompareTo method in album  class
 		System.out.println(albums[0]==albums[0]);
 		System.out.println(albums[0]==albums[1]);
+                
 
 	}
 
 }
+
 
 
 class Album implements Comparable<Object>{
@@ -140,5 +149,6 @@ class Album implements Comparable<Object>{
 	}
 
 
-
+        
 }
+
