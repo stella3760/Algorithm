@@ -1,13 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Concurrency;
 
 /**
  *
  * @author seunghyekim
  */
-public class MessagePrinterTest {
-    
+class MessagePrinterTest {
+    public static void main(String[] args) {
+        Thread t = new MessagePrinter("Happy days are here again 1", 5);
+        Thread t2 = new MessagePrinter("Happy days are here again 2", 5);
+        t.start();
+        t2.start();
+        try{
+            t.join();
+        } catch (InterruptedException e){}
+        System.out.println("All messages are printed");
+    }
 }
