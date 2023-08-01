@@ -10,8 +10,7 @@ public class readAlbumData {
 	public static Album[] readAlbums() throws Exception{
 		//parsing and reading the CSV file data into the music (object) array
 		// provide the path here...
-        File directory = new File("./");
-  		String name = directory.getAbsolutePath() + "//album.csv";
+                String name = "./src/album.csv";
   		System.out.println("directory = " + name);
 		Scanner sc = new Scanner(new File(name));
 		Album[] albums = new Album[10000];

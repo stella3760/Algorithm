@@ -2,28 +2,33 @@ package SortingAndSearching;
 
 public class BubbleSort {
     public static void main(String[] args) throws Exception {
-        Album[] albums = readAlbumData.readAlbums(); // 앨범 데이터 읽기
-        bubbleSort(albums); // 버블 정렬 수행
-
-        // 정렬된 앨범 데이터 출력
-        System.out.println(albums[0]);
-        System.out.println(albums[1]);
+        Album[] albums = readAlbumData.readAlbums(); // Read albums data
     }
 
     public static void bubbleSort(Album[] albums) {
         int n = albums.length;
         boolean swapped;
-        do {
+
+        for (int i = 0; i < n - 1; i++) {
             swapped = false;
-            for (int i = 1; i < n; i++) {
-                if (albums[i - 1].getAlbumID() > albums[i].getAlbumID() || 
-                    (albums[i - 1].getAlbumID() == albums[i].getAlbumID() && albums[i - 1].getArtist().compareTo(albums[i].getArtist()) > 0)) {
-                    Album temp = albums[i - 1];
-                    albums[i - 1] = albums[i];
-                    albums[i] = temp;
-                    swapped = true;
+
+            for (int j = 0; j < n - i - 1; j++) {
+                if (albums[j] != null && albums[j + 1] != null) {
+                    int compareArtist = albums[j].getArtist().compareTo(albums[j + 1].getArtist());
+                    if (compareArtist > 0 || (compareArtist == 0 && albums[j].getAlbumID() > albums[j + 1].getAlbumID())) {
+                        // Swap albums[j] and albums[j+1]
+                        Album temp = albums[j];
+                        albums[j] = albums[j + 1];
+                        albums[j + 1] = temp;
+                        swapped = true;
+                    }
                 }
             }
-        } while (swapped);
+
+            // If no two elements were swapped in the inner loop, the array is already sorted
+            if (!swapped) {
+                break;
+            }
+        }
     }
 }
