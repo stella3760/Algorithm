@@ -1,9 +1,45 @@
 package SortingAndSearching;
 
+/**
+ *
+ * @author seunghyekim
+ */
+
 public class BubbleSort {
+
     public static void main(String[] args) throws Exception {
-        Album[] albums = readAlbumData.readAlbums(); // Read albums data
-    }
+        int[] sizes = {10, 100, 1000, 5000, 10000};
+
+        // Sorting and printing the sorted albums
+        Album[] albumsSample = readAlbumData.readAlbums(10000);
+        bubbleSort(albumsSample);
+            for (int i = 0; i < 10000; i++) {
+                System.out.println(albumsSample[i]);
+            }
+
+        // Using Quick Sort
+        QuickSort.quickSort(albumsSample, 0, albumsSample.length - 1);
+        for (int i = 0; i < 10000; i++) {
+            System.out.println(albumsSample[i]);
+        }
+            
+        // Experimentally analyzing time complexity
+        System.out.println("\nTime complexity analysis:");
+            for (int size : sizes) {
+                long totalTime = 0;
+                int iterations = 10; // Number of iterations for averaging
+
+                for (int i = 0; i < iterations; i++) {
+                    Album[] albums = readAlbumData.readAlbums(size);
+                    long startTime = System.nanoTime();
+                    bubbleSort(albums);
+                    long endTime = System.nanoTime();
+                    totalTime += (endTime - startTime);
+                }
+
+                System.out.println("Average time for " + size + " records: " + totalTime / iterations / 1000000.0 + " ms");
+            }
+        }
 
     public static void bubbleSort(Album[] albums) {
         int n = albums.length;

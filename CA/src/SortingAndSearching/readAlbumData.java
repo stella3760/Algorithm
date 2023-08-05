@@ -7,50 +7,29 @@ import java.util.*;
 
 public class readAlbumData {
 
-	public static Album[] readAlbums() throws Exception{
-		//parsing and reading the CSV file data into the music (object) array
-		// provide the path here...
-                String name = "./src/album.csv";
-  		System.out.println("directory = " + name);
-		Scanner sc = new Scanner(new File(name));
-		Album[] albums = new Album[10000];
+	public static Album[] readAlbums(int size) throws Exception{
+	//parsing and reading the CSV file data into the music (object) array
+	// provide the path here...
+            String name = "./src/album.csv";
+            Scanner sc = new Scanner(new File(name));
+            Album[] albums = new Album[size];
 
-		// this will just print the header in CSV file
-		sc.nextLine();
+            sc.nextLine(); // Skip header
 
-		int i = 0; String st = "";
-
-		while (sc.hasNextLine())  //returns a boolean value
-		{
-			st = sc.nextLine();
-			String[] data = st.split(",");
-
-
-			System.out.println("value of  i " + i  + " st = " +st);
-			albums[i++] = new Album(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Float.parseFloat(data[3]), Float.parseFloat(data[4]), Float.parseFloat(data[5]));
-
-		}
-		sc.close();  //closes the scanner
-                
-                return albums;
-        }
-        
-        public static void main(String[] args) throws Exception {
-
-                Album[] albums = readAlbums();
+            int i = 0;
+            while (sc.hasNextLine() && i < size) {
+                String st = sc.nextLine();
+                String[] data = st.split(",");
+                albums[i++] = new Album(Integer.parseInt(data[0]), data[1], Integer.parseInt(data[2]), Float.parseFloat(data[3]), Float.parseFloat(data[4]), Float.parseFloat(data[5]));
+            }
             
-		// We can print album details due to overridden toString method in album class
-		System.out.println(albums[0]);
-		System.out.println(albums[1]);
+            sc.close();  //closes the scanner
 
-		// we can compare albums based on their ID due to overridden CompareTo method in album  class
-		System.out.println(albums[0]==albums[0]);
-		System.out.println(albums[0]==albums[1]);
-                
-
-	}
-
+            return albums;
+        }
+       
 }
+
 
 
 
