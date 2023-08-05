@@ -35,4 +35,18 @@ public class QuickSort {
         return i + 1;
     }
 
+    public static void main(String[] args) throws Exception {
+        
+        // Read albums data from CSV file
+        Album[] albums = readAlbumData.readAlbums(10000);
+        
+        // Perform quick sort
+        quickSort(albums, 0, albums.length - 1);
+        
+        // Print sorted albums
+        for(int i = 0; i < albums.length; i++) {
+            System.out.println(albums[i]);
+        }
+    }
+    
 }

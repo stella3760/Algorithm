@@ -1,4 +1,4 @@
-albumID,artist,popular,loudness,speechiness,duration
+albumID,artist,popular,loudness,speech,duration
 1,Joey+Rory,60,-4.96,0.05,11.61
 2,DraacoAventura,54,-7.23,0.04,11.61
 3,JustinBieber,35,-8.33,0.05,11.61
